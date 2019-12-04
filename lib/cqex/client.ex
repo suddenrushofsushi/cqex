@@ -12,13 +12,15 @@ defmodule CQEx.Client do
     |> :cqerl.close_client()
   end
 
-  defbang new(a)	  def new!() do
-  defbang new(a, b)	    case new() do
+  @spec new! :: :cqerl.client()
+  def new!() do
+    case new() do
       {:ok, client} ->
         client
     end
   end
 
+  @spec new!(:cqerl.inet()) :: :cqerl.client()
   def new!(a) do
     case new(a) do
       {:ok, client} ->
@@ -26,6 +28,7 @@ defmodule CQEx.Client do
     end
   end
 
+  @spec new!(:cqerl.inet(), Keyword.t()) :: :cqerl.client()
   def new!(a, b) do
     case new(a, b) do
       {:ok, client} ->
